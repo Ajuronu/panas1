@@ -1,0 +1,18 @@
+HOME.PHP
+
+<?php
+//include berfungsi untuk memasukkan code yang telah dibuat pada "header.php
+include "header.php";
+
+//berfungsi untuk memulai sesi
+session_start();
+?>
+
+<html>
+    <body>
+        <table align="center" border="1" height="30%" width="50%">
+
+//echo digunakan untuk memanggil value yang sudah diisi di form login yang berupa 'username'
+            <td align="center" valign="top">- Selamat datang <?php echo $_SESSION['username']?> di aplikasi Peduli Diri -</td>
+        </table>
+    </body>

@@ -1,0 +1,6 @@
+body{
+	background-image: url(img/image.jpg);
+	background-size: cover;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: rgb(216, 222, 224);
+}

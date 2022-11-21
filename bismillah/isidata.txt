@@ -1,0 +1,74 @@
+ISIDAtA.PHP
+
+<?php
+//berfungsi untuk memasukkan header dan memulai sesi
+    include "header.php";
+    session_start();
+
+//untuk menyimpan dan meneruskan data yang akan diisi
+    if (isset($_POST['simpan'])){
+        $tanggal = $_POST['tanggal'];
+        $jam = $_POST['jam'];
+        $lokasi = $_POST['lokasi'];
+        $suhu = $_POST['suhu'];
+        $nama = $_SESSION['username'];
+
+//var. text befungsi untuk membuat susunan yang akan di buat di "catatan/nama.txt"
+        $text = $tanggal . "," . $jam . "," . $lokasi . "," . $suhu . "</tr> \n";
+
+//berfungsi untuk membuat folder yang berisikan file-file dari var. nama
+        $data = "catatan/$nama.txt";
+
+//untuk mengekstrak nama dari directory $data
+        $dirname = dirname($data);
+        if(!is_dir($dirname)){
+            mkdir($dirname, 0755, true);
+        }
+
+//setelah berhasil maka akan keluar pop up
+        $fp = fopen($data, 'a+');
+        if(fwrite($fp,$text)){
+            echo '<script>alert("Catatan Berhasil Disimpan!");</script>';
+        }
+    } 
+?>
+
+<html>
+    <body>
+//membuat table kotak besar 
+<table border="1" align="center" width="50%" height="40%">
+    <td>
+
+//membuat table yang berisikan form-form yang harus diisi
+    <form action="" method="POST">
+        <table align="center">
+            <tr>
+//menggunakan input type "date" karena berupa tanggal
+                <td>Tanggal</td>
+                <td><input type="date" name="tanggal"></td>
+            </tr>
+            <tr>
+//menggunakan input type "time" karena berupa waktu
+                <td>Jam</td>
+                <td><input type="time" name="jam"></td>
+            </tr>
+            <tr>
+//menggunakan input type "text" karena berupa teks
+                <td>Lokasi yang dikunjungi</td>
+                <td><input type="text" name="lokasi"></td>
+            </tr>
+            <tr>
+                <td>Suhu Tubuh</td>
+                <td><input type="text" name="suhu"></td>
+            </tr>
+            <tr>
+//menggunakan input type "submit" karena berupa button/tombol
+                <td></td>
+                <td align="right"><input type="submit" name="simpan" value="Simpan" ></td>
+            </tr>
+        </table>
+    </form>
+    </td>
+</table>
+</body>
+</html>

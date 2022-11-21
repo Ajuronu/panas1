@@ -1,0 +1,67 @@
+LOGIN.PHP
+
+<?php
+if(isset($_POST['daftar']))
+//isset berfungsi untuk memeriksa nilai dari inputan form
+{
+//jika sudah membuat "pengguna baru" maka nik dan nama akan otomatis terisi di "config.txt" 
+    $nik = $_POST['nik'];
+    $nama = $_POST['nama'];
+    $text = $nik . "," .  $nama . "\n";
+    $fp = fopen('config.txt','a+');
+
+//untuk mengeluarkan pop up setelah berhasil menjalankan/mengisi "saya pengguna baru"
+    if(fwrite($fp, $text)){
+        echo '<script>alert("Anda berhasil mendaftar!"); </script>';
+    }
+}
+
+//perintah masuk
+else if(isset($_POST['masuk']))
+{
+//variabel data mengambil contents dari "config.txt" yang telah diisi sebelumnya
+    $data = file_get_contents("config.txt");
+    $contents = explode("\n", $data);
+
+//foreach di sini berfungsi untuk mengirim perulangan berupa var. contents sebagai var. values
+    foreach($contents as $values){
+        $login = explode(",", $values);
+        $nik = $login[0];
+        $nama = $login[1];
+
+//jika var. nik sama samadengan yang kita isikan pada "saya pengguna baru" maka session akan dimulai, begitu juga dengan  var. nama
+        if($nik == $_POST['nik'] && $nama == $_POST['nama']){
+            session_start();
+            $_SESSION['username'] = $nama;
+            header('location: home.php');
+
+//kalau tidak sama dengan yang kita isikan maka akan keluar pop up
+        }else{
+            echo '<script>alert("NIK atau Nama Anda Salah!"); </script>';
+        }
+    }
+}
+?>
+
+<html>
+//form berfungsi untuk membuat table, tapi bisa diisi dengan value
+    <form action="" method="POST">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <table align="center">
+            <tr>
+//menggunakan input type "text" karena value yang dimasukkan berupa teks
+                <td><input type="text" name="nik" placeholder="NIK"></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="nama" placeholder="Nama Lengkap"></td>
+            </tr>
+            <tr>
+                <td>
+//menggunakan input type "submit: karena berupa tombol/button
+                    <input type="submit" name="daftar" value="Saya Pengguna Baru">
+                    <input type="submit" name="masuk" value="Masuk">
+                </td>
+            </tr>
+        </table>
+    </form>
+</html>

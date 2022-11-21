@@ -1,0 +1,7 @@
+<?php
+//untuk mengakhiri sesi dan langsung menuju ke form login
+session_destroy();
+header("location: login.php");
+?>
+
+
