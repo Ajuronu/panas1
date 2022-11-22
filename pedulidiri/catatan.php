@@ -13,8 +13,10 @@ if(!file_exists($datauser)){
 ?>
 
 <html>
+<link rel="stylesheet" href="style.css">
     <body>
-        <table border="1" align="center" width="50%">
+        <table border="1" align="center" width="70%">
+            <br>
             <td>
                 <a>Urutkan Berdasarkan</a>
                 <select id="urut" onclick="urutkan(this)">
@@ -27,8 +29,9 @@ if(!file_exists($datauser)){
             </td>
         </table>
         <br>
-        <table border="1" align="center" width="50%" height="40%">
+        <table border="1" align="center" width="70%" height="40%">
             <td>
+                <br>
                 <table align="center" border="1" width="80%" id="myTable">
                     <tr>
                         <th>Tanggal</th>
@@ -44,6 +47,12 @@ if(!file_exists($datauser)){
                             }
                         }
                     ?>
+                </table>
+                <br>
+                <table width="845px">
+                <tr>
+                <td align="right" valign="bottom"><a href="isidata.php"><input type="submit" name="isi" value="Isi Catatan Perjalanan"></td>
+                </tr>
                 </table>
             </td>
         </table>
