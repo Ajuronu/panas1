@@ -1,5 +1,22 @@
 <?php
 if (isset($_POST['daftar'])) {
+    $nik = $_POST['nik'];
+    $nama = $_POST['nama'];
+
+    if ($nik == "" || $nama == "") {
+        echo '<script>alert("Data tidak boleh kosong!")</script>';
+    } else {
+        // Write data
+        $text = $nik . "," . $nama . "\n";
+        $write = fopen('config.txt', 'a+');
+
+        if (fwrite($write, $text)) {
+            echo '<script>alert("Anda berhasil mendaftar!")</script>';
+        }
+    }
+}
+
+if (isset($_POST['masuk'])) {
     $data = file_get_contents('config.txt');
     $contents = explode("\n", $data);
     $error = false;
