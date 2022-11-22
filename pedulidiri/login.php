@@ -1,10 +1,11 @@
-<?php
+<?php error_reporting(0);
 if (isset($_POST['daftar'])) {
     $nik = $_POST['nik'];
     $nama = $_POST['nama'];
 
     if ($nik == "" || $nama == "") {
         echo '<script>alert("Data tidak boleh kosong!")</script>';
+        return;
     } else {
         // Write data
         $text = $nik . "," . $nama . "\n";
