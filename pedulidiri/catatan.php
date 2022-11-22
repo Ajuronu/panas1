@@ -13,7 +13,7 @@ if(!file_exists($datauser)){
 ?>
 
 <html>
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
     <body>
         <table border="1" align="center" width="70%">
             <br>
@@ -50,12 +50,13 @@ if(!file_exists($datauser)){
                 </table>
                 <br>
                 <table width="845px">
-                <tr>
-                <td align="right" valign="bottom"><a href="isidata.php"><input type="submit" name="isi" value="Isi Catatan Perjalanan"></td>
-                </tr>
-                </table>
-            </td>
-        </table>
-        <script src="main.js"></script>
-    </body>
-</html>
+                    <tr>
+                        <td align="right" valign="bottom">
+                            <a href="isidata.php"><input type="submit" name="isi" value="Isi Catatan Perjalanan"></td>
+                        </tr>
+                    </table>
+                </td>
+            </table>
+            <script src="main.js"></script>
+        </body>
+    </html>
