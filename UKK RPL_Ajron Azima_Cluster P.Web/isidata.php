@@ -1,5 +1,6 @@
 <?php
     include "header.php";
+    include "koneksi.php";
     session_start();
 
     if (isset($_POST['simpan'])){
@@ -7,12 +8,15 @@
         $jam = $_POST['jam'];
         $lokasi = $_POST['lokasi'];
         $suhu = $_POST['suhu'];
-        $nama = $_SESSION['username'];
-        
-        if(fwrite($fp,$text)){
+
+        mysqli_query($koneksi, "INSERT INTO tb_perjalanan SET
+        tanggal = '$_POST[tanggal]',
+        jam = '$_POST[jam]',
+        lokasi = '$_POST[lokasi]',
+        suhu = '$_POST[suhu]'");
+
             echo '<script>alert("Catatan Berhasil Disimpan!");</script>';
-        }
-    } 
+        } 
 ?>
 
 <html>
